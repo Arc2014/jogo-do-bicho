@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import br.com.jogo.model.Usuario;
 import br.com.jogo.service.UsuarioService;
 
-@ManagedBean
+@ManagedBean(name = "loginCtrl")
 @SessionScoped
 public class LoginCtrl {
 

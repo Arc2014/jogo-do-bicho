@@ -23,6 +23,10 @@
         <param-value>Development</param-value>
     </context-param>
 
+    <listener>
+        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+    </listener>
+
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>br.com.jogo.FilterLogin</filter-class>

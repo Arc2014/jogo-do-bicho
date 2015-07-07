@@ -6,9 +6,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/**
- * Created by arcosta on 06/07/15.
- */
 public class FilterLogin implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
 
