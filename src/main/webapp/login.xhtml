@@ -20,7 +20,7 @@
                     <label>
                         <span class="block input-icon input-icon-right">
                             <p:inputText type="text" name="login" id="login"
-                                   class="span12" value=""
+                                   class="span12" value="#{loginCtrl.login}"
                                    placeholder="Login" required="true"/>
                             <i class="icon-envelope"></i>
                         </span>
@@ -29,7 +29,7 @@
                     <label>
                         <span class="block input-icon input-icon-right">
                             <p:inputText type="password" name="password" id="password"
-                                   class="span12" value="login"
+                                   class="span12" value="#{loginCtrl.senha}"
                                    placeholder="Senha" required="true"/>
                             <i class="icon-lock"></i>
                         </span>
@@ -38,7 +38,7 @@
                     <div class="space"></div>
 
                     <div class="clearfix">
-                        <p:commandButton id="btnLogin"  class="width-35 pull-right btn btn-small btn-primary">
+                        <p:commandButton id="btnLogin" action="#{loginCtrl.efetuarLogin}" class="width-35 pull-right btn btn-small btn-primary">
                             <i class="icon-key"></i>
                             Entrar
                         </p:commandButton>
