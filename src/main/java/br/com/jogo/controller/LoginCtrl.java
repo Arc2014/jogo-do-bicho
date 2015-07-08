@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import br.com.jogo.model.Usuario;
 import br.com.jogo.service.UsuarioService;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 @Named
@@ -22,16 +23,20 @@ public class LoginCtrl implements Serializable{
     private String login;
     private Usuario usuario;
 
-    public void efetuarLogin(){
+    public void efetuarLogin() throws IOException{
         usuario = usuarioService.getUsuario(login, senha);
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", usuario);
+        if(usuario != null){
+            FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+        }
     }
 
-    public  void efetuarLogout() {
+    public  void efetuarLogout() throws IOException{
         usuario = null;
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.invalidate();
+        FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
     }
 
     public String getSenha() {

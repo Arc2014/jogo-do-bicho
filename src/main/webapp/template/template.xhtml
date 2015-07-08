@@ -25,8 +25,9 @@
                     <h:form prependId="false" id="menuPrincipal">
                         <p:menu style="width: 200px">
                             <p:submenu label="Menu">
-                                <p:menuitem value="Login" icon="ui-icon-key" url="login.xhtml"/>
-                                <p:menuitem value="Milhar e Centenas" icon="ui-icon-contact" url="sistema/apostaMilhar.xhtml" rendered="#{loginCtrl.logado()}"/>
+                                <p:menuitem value="Entrar" icon="ui-icon-key" url="login.xhtml" rendered="#{!loginCtrl.logado()}"/>
+                                <p:menuitem value="Sair" icon="ui-icon-key" update="menuPrincipal" actionListener="#{loginCtrl.efetuarLogout()}" rendered="#{loginCtrl.logado()}"/>
+                                <p:menuitem value="Milhar e Centenas" icon="ui-icon-contact" url="/sistema/apostasMilhar.xhtml" rendered="#{loginCtrl.logado()}"/>
                             </p:submenu>
                         </p:menu>
                     </h:form>
