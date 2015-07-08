@@ -1,20 +1,31 @@
 package br.com.jogo.dao;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.annotation.Resource;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-public class DAOGenerico<PK, T> {
-    @PersistenceUnit(name = "jogo", unitName = "jogo")
+public class DAOGenerico<PK, T> implements Serializable{
+
+    @PersistenceContext(unitName = "jogo")
     private EntityManager entityManager;
 
-    public DAOGenerico(EntityManager entityManager) {
-        this.entityManager = entityManager;
+    private void carregarEntityManager () {
+        try {
+            EntityManagerFactory emf  = Persistence.createEntityManagerFactory("jogo");
+            entityManager = emf.createEntityManager();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public EntityManager getEntityManagerInstance(){
-        return this.entityManager;
+        if (entityManager == null) {
+            carregarEntityManager();
+        }
+        return entityManager;
     }
 
     public T getById(PK pk) {

@@ -4,9 +4,10 @@ import br.com.jogo.dao.UsuarioDAO;
 import br.com.jogo.model.Usuario;
 
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.List;
 
-public class UsuarioService {
+public class UsuarioService implements Serializable{
 
     @Inject
     private UsuarioDAO dao;
