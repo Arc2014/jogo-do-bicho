@@ -22,18 +22,4 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-
-    <listener>
-        <listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
-    </listener>
-
-    <filter>
-        <filter-name>LoginFilter</filter-name>
-        <filter-class>br.com.jogo.FilterLogin</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/jogo/*</url-pattern>
-    </filter-mapping>
-
 </web-app>

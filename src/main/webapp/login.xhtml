@@ -7,44 +7,30 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-<ui:decorate template="/template/template.xhtml">
+<ui:decorate template="template/template.xhtml">
     <ui:define name="centro">
 
-        <div class="widget-main">
-            <h4 class="header blue lighter bigger">
+        <div class="row">
+            <h4 class="fa-header text-center">
                 Autenticação
             </h4>
-            <div class="space-6"></div>
-            <h:form name="frmLogin">
-                <fieldset>
+            <div class="row"></div>
+            <h:form prependId="false">
+                <p:fieldset>
                     <label>
-                        <span class="block input-icon input-icon-right">
-                            <p:inputText type="text" name="login" id="login"
-                                   class="span12" value=""
-                                   placeholder="Login" required="true"/>
-                            <i class="icon-envelope"></i>
-                        </span>
+                    <p:inputText type="text" name="login" id="login" styleClass="form-control" value="#{loginCtrl.login}"
+                           placeholder="Login" required="true"/>
                     </label>
-
                     <label>
-                        <span class="block input-icon input-icon-right">
-                            <p:inputText type="password" name="password" id="password"
-                                   class="span12" value="login"
-                                   placeholder="Senha" required="true"/>
-                            <i class="icon-lock"></i>
-                        </span>
+                    <p:inputText type="password" name="password" id="password" styleClass="form-control" value="#{loginCtrl.senha}"
+                           placeholder="Senha" required="true"/>
                     </label>
-
-                    <div class="space"></div>
+                    <div class="clearfix"></div>
 
                     <div class="clearfix">
-                        <p:commandButton id="btnLogin"  class="width-35 pull-right btn btn-small btn-primary">
-                            <i class="icon-key"></i>
-                            Entrar
-                        </p:commandButton>
+                        <p:commandButton id="btnLogin" value="Entrar" update="menuPrincipal" ajax="true" process="@all" actionListener="#{loginCtrl.efetuarLogin()}"/>
                     </div>
-                    <div class="space-4"></div>
-                </fieldset>
+                </p:fieldset>
             </h:form>
         </div>
     </ui:define>

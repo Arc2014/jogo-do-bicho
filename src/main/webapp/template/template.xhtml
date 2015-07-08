@@ -20,14 +20,13 @@
             <p:layoutUnit position="north" size="100">
                 <h:graphicImage url="/resources/imagens/BANNER.jpg"  width="100%" height="100%"/>
             </p:layoutUnit>
-
             <p:layoutUnit position="west" size="220">
                 <ui:insert name="menu">
-                    <h:form>
+                    <h:form prependId="false" id="menuPrincipal">
                         <p:menu style="width: 200px">
                             <p:submenu label="Menu">
-                                <p:menuitem value="Login" icon="ui-icon-key" />
-                                <p:menuitem value="Fazer meu cadastro" icon="ui-icon-contact" />
+                                <p:menuitem value="Login" icon="ui-icon-key" url="login.xhtml"/>
+                                <p:menuitem value="Milhar e Centenas" icon="ui-icon-contact" url="sistema/apostaMilhar.xhtml" rendered="#{loginCtrl.logado()}"/>
                             </p:submenu>
                         </p:menu>
                     </h:form>
