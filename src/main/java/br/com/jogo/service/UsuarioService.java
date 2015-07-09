@@ -12,12 +12,12 @@ public class UsuarioService implements Serializable{
     @Inject
     private UsuarioDAO dao;
 
-    public void save(Usuario usuario){
+    public void save(Usuario usuario) throws Exception{
         usuario.validate();
         dao.save(usuario);
     }
 
-    public List<Usuario> findAll(){
+    public List<Usuario> findAll() throws Exception{
         return dao.findAll();
     }
 

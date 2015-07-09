@@ -1,6 +1,8 @@
 package br.com.jogo.dao;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -8,23 +10,10 @@ import java.util.List;
 
 public class DAOGenerico<PK, T> implements Serializable{
 
-    @PersistenceContext(unitName = "jogo")
+    @Inject
     private EntityManager entityManager;
 
-    private void carregarEntityManager () {
-        try {
-            EntityManagerFactory emf  = Persistence.createEntityManagerFactory("jogo");
-            entityManager = emf.createEntityManager();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public EntityManager getEntityManagerInstance(){
-        if (entityManager == null) {
-            carregarEntityManager();
-        }
         return entityManager;
     }
 
@@ -32,25 +21,25 @@ public class DAOGenerico<PK, T> implements Serializable{
         return (T) entityManager.find(getTypeClass(), pk);
     }
 
-    public void save(T entity) {
+    public void save(T entity) throws Exception{
         beginTransaction();
         entityManager.persist(entity);
-        close();
+        commit();
     }
 
-    public void update(T entity) {
+    public void update(T entity) throws Exception{
         beginTransaction();
         entityManager.merge(entity);
-        close();
+        commit();
     }
 
-    public void delete(T entity) {
+    public void delete(T entity) throws Exception{
         beginTransaction();
         entityManager.remove(entity);
-        close();
+        commit();
     }
 
-    public List<T> findAll() {
+    public List<T> findAll() throws Exception{
         return entityManager.createQuery(("FROM " + getTypeClass().getName())).getResultList();
     }
 
@@ -58,20 +47,20 @@ public class DAOGenerico<PK, T> implements Serializable{
         Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
         return clazz;
     }
-    public void beginTransaction(){
+    public void beginTransaction() throws Exception{
         entityManager.getTransaction().begin();
     }
 
-    public void commit(){
+    public void commit() throws Exception{
         entityManager.getTransaction().commit();
     }
 
-    public void close(){
+    public void close() throws Exception{
         entityManager.close();
         entityManager.getEntityManagerFactory().close();
     }
 
-    public void rollBack(){
+    public void rollBack() throws Exception{
         entityManager.getTransaction().rollback();
     }
 }

@@ -12,28 +12,24 @@
     </style>
     <link rel="stylesheet" type="text/css" href="/jogo/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/jogo/resources/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/jogo/resources/css/style.css"/>
     <h:outputScript name="jquery/jquery.js" library="primefaces" />
 </h:head>
 <h:body>
     <div align="center">
         <p:layout style="min-width:95%;max-width:95%;min-height:800px">
-            <p:layoutUnit position="north" size="100">
-                <h:graphicImage url="/resources/imagens/BANNER.jpg"  width="100%" height="100%"/>
-            </p:layoutUnit>
-            <p:layoutUnit position="west" size="220">
+            <p:layoutUnit position="north" size="10">
                 <ui:insert name="menu">
                     <h:form prependId="false" id="menuPrincipal">
-                        <p:menu style="width: 200px">
-                            <p:submenu label="Menu">
-                                <p:menuitem value="Entrar" icon="ui-icon-key" url="login.xhtml" rendered="#{!loginCtrl.logado()}"/>
-                                <p:menuitem value="Sair" icon="ui-icon-key" update="menuPrincipal" actionListener="#{loginCtrl.efetuarLogout()}" rendered="#{loginCtrl.logado()}"/>
-                                <p:menuitem value="Milhar e Centenas" icon="ui-icon-contact" url="/sistema/apostasMilhar.xhtml" rendered="#{loginCtrl.logado()}"/>
-                            </p:submenu>
-                        </p:menu>
+                        <p:contextMenu>
+                            <p:menuitem value="Entrar" icon="ui-icon-key" url="login.xhtml" rendered="#{!loginCtrl.logado()}"/>
+                            <p:menuitem value="Sair" icon="ui-icon-key" update="menuPrincipal" actionListener="#{loginCtrl.efetuarLogout()}" rendered="#{loginCtrl.logado()}"/>
+                            <p:menuitem value="Milhar e Centenas" icon="ui-icon-contact" url="/sistema/apostasMilhar.xhtml" rendered="#{loginCtrl.logado()}"/>
+                        </p:contextMenu>
                     </h:form>
                 </ui:insert>
             </p:layoutUnit>
-            <p:layoutUnit style="min-width:82%;max-width:82%;" position="center">
+            <p:layoutUnit style="min-width:100%;max-width:100%;" position="center">
                 <ui:insert name="centro">
                     O que estiver aqui será substituido!
                 </ui:insert>
