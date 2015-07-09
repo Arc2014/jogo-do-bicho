@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<ui:decorate template="../template/template.xhtml">
+    <ui:define name="centro">
+        <h:form>
+            <p:growl id="growl" showDetail="true" sticky="true" />
+            <p:commandButton type="onsubmit" value="Jogar"  update="growl" actionListener="#{apostaCtrl.save()}"/>
+            <div class="row">
+                <p:outputLabel value="N° :"/>
+                <p:inputText value="#{apostaCtrl.aposta.numero}"/>
+                <p:outputLabel styleClass="espaco-esquerda" value="R$ :"/>
+                <p:inputText value="#{apostaCtrl.aposta.valorApostaPrimeiroPremio}"/>
+            </div>
+            <hr></hr>
+            <div class="row">
+                <p:outputLabel value="2° R$ :"/>
+                <p:inputText size="10" value="#{apostaCtrl.aposta.valorApostaSegundoPremio}"/>
+                <p:outputLabel styleClass="espaco-esquerda" value="3° R$ :"/>
+                <p:inputText size="10" value="#{apostaCtrl.aposta.valorApostaTerceiroPremio}"/>
+                <p:outputLabel styleClass="espaco-esquerda" value="4° R$ :"/>
+                <p:inputText size="10" value="#{apostaCtrl.aposta.valorApostaQuartoPremio}"/>
+                <p:outputLabel styleClass="espaco-esquerda" value="5° R$ :"/>
+                <p:inputText size="10" value="#{apostaCtrl.aposta.valorApostaQuintoPremio}"/>
+                <p:outputLabel styleClass="espaco-esquerda" value="6° R$ :"/>
+                <p:inputText size="10" value="#{apostaCtrl.aposta.valorApostaSextoPremio}"/>
+                <p:outputLabel styleClass="espaco-esquerda" value="7° R$ :"/>
+                <p:inputText size="10" value="#{apostaCtrl.aposta.valorApostaSetimoPremio}"/>
+            </div>
+            <hr></hr>
+        </h:form>
+    </ui:define>
+</ui:decorate>
+</html>
