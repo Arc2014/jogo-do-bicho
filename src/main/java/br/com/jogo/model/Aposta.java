@@ -53,7 +53,7 @@ public class Aposta implements Serializable{
     }
 
     public Double getValorApostaPrimeiroPremio() {
-        return valorApostaPrimeiroPremio == null ? 0 : valorApostaPrimeiroPremio;
+        return valorApostaPrimeiroPremio;
     }
 
     public void setValorApostaPrimeiroPremio(Double valorApostaPrimeiroPremio) {
@@ -61,7 +61,7 @@ public class Aposta implements Serializable{
     }
 
     public Double getValorApostaSegundoPremio() {
-        return valorApostaSegundoPremio == null ? 0 : valorApostaSegundoPremio;
+        return valorApostaSegundoPremio;
     }
 
     public void setValorApostaSegundoPremio(Double valorApostaSegundoPremio) {
@@ -69,7 +69,7 @@ public class Aposta implements Serializable{
     }
 
     public Double getValorApostaTerceiroPremio() {
-        return valorApostaTerceiroPremio == null ? 0 : valorApostaTerceiroPremio;
+        return valorApostaTerceiroPremio;
     }
 
     public void setValorApostaTerceiroPremio(Double valorApostaTerceiroPremio) {
@@ -77,7 +77,7 @@ public class Aposta implements Serializable{
     }
 
     public Double getValorApostaQuartoPremio() {
-        return valorApostaQuartoPremio == null ? 0: valorApostaQuartoPremio;
+        return valorApostaQuartoPremio;
     }
 
     public void setValorApostaQuartoPremio(Double valorApostaQuartoPremio) {
@@ -85,7 +85,7 @@ public class Aposta implements Serializable{
     }
 
     public Double getValorApostaQuintoPremio() {
-        return valorApostaQuintoPremio == null ? 0 : valorApostaQuintoPremio;
+        return valorApostaQuintoPremio;
     }
 
     public void setValorApostaQuintoPremio(Double valorApostaQuintoPremio) {
@@ -93,7 +93,7 @@ public class Aposta implements Serializable{
     }
 
     public Double getValorApostaSextoPremio() {
-        return valorApostaSextoPremio == null ? 0 : valorApostaSextoPremio;
+        return valorApostaSextoPremio;
     }
 
     public void setValorApostaSextoPremio(Double valorApostaSextoPremio) {
@@ -101,10 +101,31 @@ public class Aposta implements Serializable{
     }
 
     public Double getValorApostaSetimoPremio() {
-        return valorApostaSetimoPremio == null ? 0 : valorApostaSetimoPremio;
+        return valorApostaSetimoPremio;
     }
 
     public void setValorApostaSetimoPremio(Double valorApostaSetimoPremio) {
         this.valorApostaSetimoPremio = valorApostaSetimoPremio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Aposta aposta = (Aposta) o;
+
+        return numero.equals(aposta.numero);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return numero.hashCode();
+    }
+
+    public boolean isApostaInvalida() {
+        return numero == null || (valorApostaPrimeiroPremio == null && valorApostaSegundoPremio == null && valorApostaTerceiroPremio == null
+                && valorApostaQuartoPremio == null && valorApostaQuintoPremio == null && valorApostaSextoPremio == null && valorApostaSetimoPremio == null);
     }
 }

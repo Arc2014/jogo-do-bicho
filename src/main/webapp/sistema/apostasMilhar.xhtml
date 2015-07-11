@@ -1,28 +1,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 <ui:decorate template="../template/template.xhtml">
     <ui:define name="centro">
-        <h3>Relatorio de Apostas</h3>
-        <p:dataTable var="car" reflow="true" value="teste" rows="5" paginator="true">
-            <p:column headerText="Id">
-                <h:outputText value="teste" />
-            </p:column>
+        <h:form id="formApostasMilhar">
+            <p:growl id="growl" showDetail="true" sticky="true" life="3"/>
+            <hr></hr>
+            <p:commandButton type="onsubmit" styleClass="btn btn-success small left text-left" value="Jogar"  update="formApostasMilhar" actionListener="#{apostaCtrl.save()}"/>
+            <p:outputLabel value="N° :"/>
+            <p:inputText size="10" value="#{apostaCtrl.aposta.numero}" maxlength="4"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="R$ :"/>
+            <p:inputText styleClass="moeda" id="primeiroPremio" size="10" value="#{apostaCtrl.aposta.valorApostaPrimeiroPremio}"/>
 
-            <p:column headerText="Year">
-                <h:outputText value="teste" />
-            </p:column>
+            <hr></hr>
 
-            <p:column headerText="Brand">
-                <h:outputText value="#teste" />
-            </p:column>
+            <p:outputLabel value="2° R$ :"/>
+            <p:inputText styleClass="moeda" size="10" value="#{apostaCtrl.aposta.valorApostaSegundoPremio}"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="3° R$ :"/>
+            <p:inputText styleClass="moeda" size="10" value="#{apostaCtrl.aposta.valorApostaTerceiroPremio}"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="4° R$ :"/>
+            <p:inputText styleClass="moeda" size="10" value="#{apostaCtrl.aposta.valorApostaQuartoPremio}"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="5° R$ :"/>
+            <p:inputText styleClass="moeda" size="10" value="#{apostaCtrl.aposta.valorApostaQuintoPremio}"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="6° R$ :"/>
+            <p:inputText styleClass="moeda" size="10" value="#{apostaCtrl.aposta.valorApostaSextoPremio}"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="7° R$ :"/>
+            <p:inputText styleClass="moeda" size="10" value="#{apostaCtrl.aposta.valorApostaSetimoPremio}"/>
 
-            <p:column headerText="Color">
-                <h:outputText value="teste" />
-            </p:column>
-        </p:dataTable>
-        <hr></hr>
+            <hr></hr>
+
+            <ui:include src="gridApoostasMilhar.xhtml"></ui:include>
+        </h:form>
     </ui:define>
 </ui:decorate>
 </html>

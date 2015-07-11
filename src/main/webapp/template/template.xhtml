@@ -14,13 +14,31 @@
     <link rel="stylesheet" type="text/css" href="/jogo/resources/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="/jogo/resources/css/style.css"/>
     <h:outputScript name="jquery/jquery.js" library="primefaces" />
+    <h:outputScript library="js" name="jqueryMaskMoney.js"/>
+    <script>
+        function configurarMoeda() {
+            $(".moeda").maskMoney(
+                {
+                    prefix:'R$ ',
+                    allowNegative: true,
+                    thousands:'.',
+                    decimal:',',
+                    affixesStay: false
+                }
+            );
+        }
+
+        $(document).ready(function() {
+            configurarMoeda();
+        });
+    </script>
 </h:head>
 <h:body>
     <div align="center">
         <p:layout style="min-width:95%;max-width:95%;min-height:800px">
             <p:layoutUnit position="north" size="10">
                 <ui:insert name="menu">
-                    <h:form prependId="false" id="menuPrincipal">
+                    <h:form id="menuPrincipal">
                         <p:contextMenu>
                             <p:menuitem value="Entrar" icon="ui-icon-key" url="login.xhtml" rendered="#{!loginCtrl.logado()}"/>
                             <p:menuitem value="Sair" icon="ui-icon-key" update="menuPrincipal" actionListener="#{loginCtrl.efetuarLogout()}" rendered="#{loginCtrl.logado()}"/>
