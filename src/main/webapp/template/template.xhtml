@@ -19,10 +19,7 @@
         function configurarMoeda() {
             $(".moeda").maskMoney(
                 {
-                    prefix:'R$ ',
-                    allowNegative: true,
-                    thousands:'.',
-                    decimal:',',
+                    decimal:'.',
                     affixesStay: false
                 }
             );
@@ -30,6 +27,7 @@
 
         $(document).ready(function() {
             configurarMoeda();
+            $('.moeda').keypress(configurarMoeda());
         });
     </script>
 </h:head>
