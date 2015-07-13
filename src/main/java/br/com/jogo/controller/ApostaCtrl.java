@@ -14,6 +14,8 @@ import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
