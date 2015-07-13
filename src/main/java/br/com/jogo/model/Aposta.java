@@ -125,7 +125,14 @@ public class Aposta implements Serializable{
     }
 
     public boolean isApostaInvalida() {
-        return numero == null || numero == "" || (valorApostaPrimeiroPremio == null && valorApostaSegundoPremio == null && valorApostaTerceiroPremio == null
-                && valorApostaQuartoPremio == null && valorApostaQuintoPremio == null && valorApostaSextoPremio == null && valorApostaSetimoPremio == null);
+        return numero == null || numero == "" || (
+                (valorApostaPrimeiroPremio == null || valorApostaPrimeiroPremio <= 0) &&
+                (valorApostaSegundoPremio == null || valorApostaSegundoPremio <= 0) &&
+                (valorApostaTerceiroPremio == null || valorApostaTerceiroPremio <= 0) &&
+                (valorApostaQuartoPremio == null || valorApostaQuartoPremio <= 0) &&
+                (valorApostaQuintoPremio == null || valorApostaQuintoPremio <= 0) &&
+                (valorApostaSextoPremio == null || valorApostaSextoPremio <= 0) &&
+                (valorApostaSetimoPremio == null || valorApostaSetimoPremio <= 0)
+        );
     }
 }
