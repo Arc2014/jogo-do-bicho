@@ -3,6 +3,7 @@ package br.com.jogo.controller;
 import br.com.jogo.model.Aposta;
 import br.com.jogo.model.Usuario;
 import br.com.jogo.service.ApostaService;
+import br.com.jogo.service.MediaService;
 import br.com.jogo.service.RelatorioApostasService;
 import br.com.jogo.to.RelatorioMilharCentenaTO;
 import br.com.jogo.util.FacesUtil;
@@ -18,6 +19,7 @@ import java.applet.Applet;
 import java.applet.AudioClip;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 @Named
@@ -40,18 +42,39 @@ public class ApostaCtrl implements Serializable{
         setRelatorioMilharCentenaTOs(relatorioApostasService.montarRelatorioApostasMilharCentena());
     }
 
+    private void tocarAlarme (){
+        for (RelatorioMilharCentenaTO relatorioMilharCentenaTO : relatorioMilharCentenaTOs) {
+            if (relatorioMilharCentenaTO.getNumero().equals(aposta.getNumero()) && aposta.getValorApostaPrimeiroPremio() > 0) {
+                MediaService.play();
+            }
+            if (aposta.isApostaValorSperior10()) {
+                MediaService.play();
+            }
+        }
+    }
+
     public void save() {
         try {
             if (!aposta.isApostaInvalida()){
                 apostaService.save(aposta);
+                tocarAlarme();
                 carregarRelatorio();
                 aposta = new Aposta();
-                FacesUtil.mostrarMensagemSucesso("mensagem.sucesso.salvar.aposta");
             } else {
-                FacesUtil.mostrarMensagemErro("mensagem.erro.aposta.invalida");
+                FacesUtil.mostrarDialogMensagemErro("mensagem.erro.aposta.invalida");
             }
         } catch (Exception e) {
             FacesUtil.mostrarMensagemErro("mensagem.erro.salvar.aposta");
+        }
+    }
+
+    public void apagarApostas () {
+        try {
+            apostaService.apagarApostas();
+            relatorioMilharCentenaTOs = Collections.emptyList();
+            FacesUtil.mostrarMensagemSucesso("mensagem.sucesso.apagar.apostas");
+        }catch (Exception e) {
+            FacesUtil.mostrarMensagemErro("mensagem.erro.apagar.apostas");
         }
     }
 

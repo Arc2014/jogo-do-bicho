@@ -36,7 +36,8 @@ public class LoginCtrl implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.invalidate();
-        FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
+        String retorno = fc.getExternalContext().getApplicationContextPath();
+        FacesContext.getCurrentInstance().getExternalContext().redirect(retorno);
     }
 
     public String getSenha() {

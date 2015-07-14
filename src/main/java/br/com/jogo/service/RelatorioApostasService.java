@@ -46,15 +46,15 @@ public class RelatorioApostasService implements Serializable{
 
     private void acumularValoresNaMesmaAposta(Aposta a, RelatorioMilharCentenaTO rmc) {
         if(isValorValido(a.getValorApostaPrimeiroPremio())){
-            rmc.setQtdePrimeiroPremio(rmc.getQtdeQuartoPremio() + 1);
+            rmc.setQtdePrimeiroPremio(rmc.getQtdePrimeiroPremio() + 1);
             rmc.setValorTotalPrimeiroPremio(rmc.getValorTotalPrimeiroPremio() + a.getValorApostaPrimeiroPremio());
         }
         if(isValorValido(a.getValorApostaSegundoPremio())){
-            rmc.setQtdeSegundoPremio(rmc.getQtdeQuartoPremio() + 1);
+            rmc.setQtdeSegundoPremio(rmc.getQtdeSegundoPremio() + 1);
             rmc.setValorTotalSegundoPremio(rmc.getValorTotalSegundoPremio() + a.getValorApostaSegundoPremio());
         }
         if(isValorValido(a.getValorApostaTerceiroPremio())){
-            rmc.setQtdeTerceiroPremio(rmc.getQtdeQuartoPremio() + 1);
+            rmc.setQtdeTerceiroPremio(rmc.getQtdeTerceiroPremio() + 1);
             rmc.setValorTotalTerceiroPremio(rmc.getValorTotalTerceiroPremio() + a.getValorApostaTerceiroPremio());
         }
         if(isValorValido(a.getValorApostaQuartoPremio())){
@@ -72,6 +72,10 @@ public class RelatorioApostasService implements Serializable{
         if(isValorValido(a.getValorApostaSetimoPremio())){
             rmc.setQtdeSetimoPremio(rmc.getQtdeSetimoPremio() + 1);
             rmc.setValorTotalSetimoPremio(rmc.getValorTotalSetimoPremio() + a.getValorApostaSetimoPremio());
+        }
+
+        if(a.isApostaValorSperior10()) {
+            rmc.setIsApostaValorSuperior10(Boolean.TRUE);
         }
     }
 

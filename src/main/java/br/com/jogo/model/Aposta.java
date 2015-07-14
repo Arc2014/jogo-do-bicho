@@ -108,6 +108,22 @@ public class Aposta implements Serializable{
         this.valorApostaSetimoPremio = valorApostaSetimoPremio;
     }
 
+    public boolean isApostaInvalida() {
+        return numero == null || numero == "" || (
+                (valorApostaPrimeiroPremio == null || valorApostaPrimeiroPremio <= 0) &&
+                (valorApostaSegundoPremio == null || valorApostaSegundoPremio <= 0) &&
+                (valorApostaTerceiroPremio == null || valorApostaTerceiroPremio <= 0) &&
+                (valorApostaQuartoPremio == null || valorApostaQuartoPremio <= 0) &&
+                (valorApostaQuintoPremio == null || valorApostaQuintoPremio <= 0) &&
+                (valorApostaSextoPremio == null || valorApostaSextoPremio <= 0) &&
+                (valorApostaSetimoPremio == null || valorApostaSetimoPremio <= 0)
+        );
+    }
+
+    public Boolean isApostaValorSperior10() {
+        return valorApostaPrimeiroPremio != null && valorApostaPrimeiroPremio > 10;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -122,17 +138,5 @@ public class Aposta implements Serializable{
     @Override
     public int hashCode() {
         return numero.hashCode();
-    }
-
-    public boolean isApostaInvalida() {
-        return numero == null || numero == "" || (
-                (valorApostaPrimeiroPremio == null || valorApostaPrimeiroPremio <= 0) &&
-                (valorApostaSegundoPremio == null || valorApostaSegundoPremio <= 0) &&
-                (valorApostaTerceiroPremio == null || valorApostaTerceiroPremio <= 0) &&
-                (valorApostaQuartoPremio == null || valorApostaQuartoPremio <= 0) &&
-                (valorApostaQuintoPremio == null || valorApostaQuintoPremio <= 0) &&
-                (valorApostaSextoPremio == null || valorApostaSextoPremio <= 0) &&
-                (valorApostaSetimoPremio == null || valorApostaSetimoPremio <= 0)
-        );
     }
 }

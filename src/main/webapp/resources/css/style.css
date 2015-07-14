@@ -1,3 +1,7 @@
 .espaco-esquerda {
     margin-left: 20px;
 }
+
+.cell-red{
+    background-color: #c9302c;
+}

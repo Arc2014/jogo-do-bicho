@@ -6,9 +6,9 @@
 <ui:decorate template="../template/template.xhtml">
     <ui:define name="centro">
         <h:form id="formApostasMilhar">
-            <p:messages id="messages" closable="true"  autoUpdate="true" />
+            <p:growl id="messages" autoUpdate="true" showDetail="true"/>
             <hr></hr>
-            <p:commandButton type="onsubmit" styleClass="btn btn-success small left text-left" value="Jogar"  update="formApostasMilhar" actionListener="#{apostaCtrl.save()}"/>
+            <p:commandButton type="onsubmit" styleClass="btn btn-success small fc-left left text-left" value="Jogar"  update="formApostasMilhar, menuPrincipal, messages" actionListener="#{apostaCtrl.save()}"/>
             <p:outputLabel value="N° :"/>
             <p:inputText size="10" value="#{apostaCtrl.aposta.numero}" maxlength="4"/>
             <p:outputLabel styleClass="espaco-esquerda" value="R$ :"/>

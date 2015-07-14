@@ -9,10 +9,10 @@
             <h:outputText value="#{r.numero}" />
         </p:column>
 
-        <p:column headerText="Qtde 1°">
+        <p:column headerText="Qtde 1°" styleClass="#{r.isDuplicouAposta() ? 'cell-red' : ''}">
             <h:outputText value="#{r.qtdePrimeiroPremio}"/>
         </p:column>
-        <p:column headerText="R$ 1°">
+        <p:column headerText="R$ 1°" styleClass="#{r.isApostaValorSuperior10() ? 'cell-red' : ''}">
             <h:outputText value="#{r.valorTotalPrimeiroPremio}" >
                 <f:convertNumber type="currency" currencySymbol="" />
             </h:outputText>

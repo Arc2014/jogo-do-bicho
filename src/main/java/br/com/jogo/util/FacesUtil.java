@@ -1,5 +1,7 @@
 package br.com.jogo.util;
 
+import org.primefaces.context.RequestContext;
+
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Map;
@@ -44,9 +46,13 @@ public final class FacesUtil {
     }
 
     private static void mostrarMensagemMessages(FacesMessage.Severity severity, String keyMessage) {
-        FacesMessage facesMessage = new FacesMessage(severity,
-                getMessage(keyMessage), "");
+        FacesMessage facesMessage = new FacesMessage(severity, getMessage(keyMessage), "");
         getContext().addMessage(null, facesMessage);
+    }
+
+    public static void mostrarDialogMensagemErro(String keyMessage) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, getMessage(keyMessage), "");
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
     }
 
     public static ExternalContext getExternalContext() {

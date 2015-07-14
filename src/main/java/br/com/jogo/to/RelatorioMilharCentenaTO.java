@@ -24,6 +24,8 @@ public class RelatorioMilharCentenaTO implements Comparable<RelatorioMilharCente
     private Integer qtdeSetimoPremio = Integer.valueOf(0);
     private Double valorTotalSetimoPremio = Double.valueOf(0);
 
+    private Boolean isApostaValorSuperior10 = Boolean.FALSE;
+
     public String getNumero() {
         return numero;
     }
@@ -144,14 +146,17 @@ public class RelatorioMilharCentenaTO implements Comparable<RelatorioMilharCente
         this.valorTotalSetimoPremio = valorTotalSetimoPremio;
     }
 
-    public Boolean getIsValorApostaMaiorQue10() {
-        return valorTotalPrimeiroPremio > 10;
-    }
-
-    public Boolean getIsDuplicouAposta() {
+    public Boolean isDuplicouAposta() {
         return qtdePrimeiroPremio > 1;
     }
 
+    public Boolean isApostaValorSuperior10() {
+        return isApostaValorSuperior10;
+    }
+
+    public void setIsApostaValorSuperior10(Boolean isApostaValorSuperior10) {
+        this.isApostaValorSuperior10 = isApostaValorSuperior10;
+    }
 
     @Override
     public boolean equals(Object o) {
