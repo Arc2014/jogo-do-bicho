@@ -37,9 +37,31 @@ public class ApostaCtrl implements Serializable{
 
     private List<RelatorioMilharCentenaTO> relatorioMilharCentenaTOs;
 
+    private List<Aposta> apostas;
+
     @PostConstruct
     public void carregarRelatorio () {
         setRelatorioMilharCentenaTOs(relatorioApostasService.montarRelatorioApostasMilharCentena());
+        setApostas(carregarApostas());
+    }
+
+    public List<Aposta> carregarApostas() {
+        try {
+            return apostaService.listarApostas();
+        } catch (Exception e) {
+            FacesUtil.mostrarMensagemErro("mensagem.erro.carregar.apostas");
+            return Collections.emptyList();
+        }
+    }
+
+    public void apagarAposta(Aposta aposta){
+        try {
+            apostaService.apagarAposta(aposta);
+            carregarRelatorio();
+            FacesUtil.mostrarMensagemSucesso("mensagem.sucesso.apagar.aposta");
+        } catch (Exception e) {
+            FacesUtil.mostrarMensagemSucesso("mensagem.erro.apagar.apostas");
+        }
     }
 
     private void tocarAlarme (){
@@ -59,6 +81,7 @@ public class ApostaCtrl implements Serializable{
                 apostaService.save(aposta);
                 tocarAlarme();
                 carregarRelatorio();
+                carregarApostas();
                 aposta = new Aposta();
             } else {
                 FacesUtil.mostrarDialogMensagemErro("mensagem.erro.aposta.invalida");
@@ -72,6 +95,7 @@ public class ApostaCtrl implements Serializable{
         try {
             apostaService.apagarApostas();
             relatorioMilharCentenaTOs = Collections.emptyList();
+            apostas = Collections.emptyList();
             FacesUtil.mostrarMensagemSucesso("mensagem.sucesso.apagar.apostas");
         }catch (Exception e) {
             FacesUtil.mostrarMensagemErro("mensagem.erro.apagar.apostas");
@@ -92,5 +116,13 @@ public class ApostaCtrl implements Serializable{
 
     public void setRelatorioMilharCentenaTOs(List<RelatorioMilharCentenaTO> relatorioMilharCentenaTOs) {
         this.relatorioMilharCentenaTOs = relatorioMilharCentenaTOs;
+    }
+
+    public List<Aposta> getApostas() {
+        return apostas;
+    }
+
+    public void setApostas(List<Aposta> apostas) {
+        this.apostas = apostas;
     }
 }

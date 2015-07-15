@@ -5,10 +5,10 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <ui:decorate template="../template/template.xhtml">
     <ui:define name="centro">
-        <h:form id="formApostasMilhar">
+        <h:form prependId="false" id="formApostasMilhar">
             <p:growl id="messages" autoUpdate="true" showDetail="true"/>
             <hr></hr>
-            <p:commandButton type="onsubmit" styleClass="btn btn-success small fc-left left text-left" value="Jogar"  update="formApostasMilhar, menuPrincipal, messages" actionListener="#{apostaCtrl.save()}"/>
+            <p:commandButton style="margin-right: 247px; margin-left: -406px;" type="onsubmit" styleClass="btn btn-success small fc-left left text-left" value="Jogar"  update="formApostasMilhar, menuPrincipal, messages" actionListener="#{apostaCtrl.save()}"/>
             <p:outputLabel value="N° :"/>
             <p:inputText size="10" value="#{apostaCtrl.aposta.numero}" maxlength="4"/>
             <p:outputLabel styleClass="espaco-esquerda" value="R$ :"/>
@@ -30,8 +30,14 @@
             <p:inputText styleClass="moeda" size="10" onfocus="configurarMoeda();" value="#{apostaCtrl.aposta.valorApostaSetimoPremio}"/>
 
             <hr></hr>
-
-            <ui:include src="gridApoostasMilhar.xhtml"></ui:include>
+            <p:tabView prependId="false">
+                <p:tab title="Relatorio de Apostas">
+                    <ui:include src="relatorioApostas.xhtml"></ui:include>
+                </p:tab>
+                <p:tab title="Apostas Realizadas">
+                    <ui:include src="gridApostasRealizadas.xhtml"></ui:include>
+                </p:tab>
+            </p:tabView>
         </h:form>
     </ui:define>
 </ui:decorate>

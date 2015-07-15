@@ -39,7 +39,7 @@
                         <p:menuitem value="Entrar" icon="ui-icon-key" url="login.xhtml" rendered="#{!loginCtrl.logado()}"/>
                         <p:menuitem value="Sair" icon="ui-icon-key" update="menuPrincipal" actionListener="#{loginCtrl.efetuarLogout()}" rendered="#{loginCtrl.logado()}"/>
                         <p:menuitem value="Milhar e Centenas" icon="ui-icon-contact" url="/sistema/apostasMilhar.xhtml" rendered="#{loginCtrl.logado()}"/>
-                        <p:menuitem value="Remover Apostas" icon="ui-icon-trash" actionListener="#{apostaCtrl.apagarApostas()}" rendered="#{loginCtrl.logado()}"/>
+                        <p:menuitem value="Remover Apostas" update="formApostasMilhar, menuPrincipal, messages" icon="ui-icon-trash" actionListener="#{apostaCtrl.apagarApostas()}" rendered="#{loginCtrl.logado()}"/>
                     </p:contextMenu>
                 </h:form>
             </ui:insert>

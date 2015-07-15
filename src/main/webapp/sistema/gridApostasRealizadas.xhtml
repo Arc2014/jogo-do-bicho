@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:dataTable widgetVar="tableApostas" var="a" reflow="true" value="#{apostaCtrl.apostas}"  rows="10" paginator="true" emptyMessage="Apostas não encontradas !">
+        <p:column headerText="Número">
+            <h:outputText value="#{a.numero}" />
+        </p:column>
+
+        <p:column headerText="R$ 1°">
+            <h:outputText value="#{a.valorApostaPrimeiroPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="R$ 2°">
+            <h:outputText value="#{a.valorApostaSegundoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="R$ 3°">
+            <h:outputText value="#{a.valorApostaTerceiroPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="R$ 4°">
+            <h:outputText value="#{a.valorApostaQuartoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="R$ 5°">
+            <h:outputText value="#{a.valorApostaQuintoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="R$ 6°">
+            <h:outputText value="#{a.valorApostaSextoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+
+        <p:column headerText="R$ 7°">
+            <h:outputText value="#{a.valorApostaSetimoPremio}">
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+
+        <p:column styleClass="text-center" headerText="Apagar Aposta">
+            <p:commandLink update="formApostasMilhar, menuPrincipal, messages" actionListener="#{apostaCtrl.apagarAposta(a)}">
+                <span class="glyphicon glyphicon-trash"></span>
+            </p:commandLink>
+        </p:column>
+    </p:dataTable>
+</html>
