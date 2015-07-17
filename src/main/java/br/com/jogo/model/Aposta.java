@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "aposta")
-public class Aposta implements Serializable{
+public class Aposta implements Serializable, Comparable<Aposta>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -138,5 +138,9 @@ public class Aposta implements Serializable{
     @Override
     public int hashCode() {
         return numero.hashCode();
+    }
+
+    public int compareTo(Aposta aposta) {
+        return this.numero.compareTo(aposta.getNumero());
     }
 }

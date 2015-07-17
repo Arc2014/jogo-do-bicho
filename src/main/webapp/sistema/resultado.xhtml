@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+<ui:decorate template="../template/template.xhtml">
+    <ui:define name="centro">
+        <h:form prependId="false" id="formResultadoApostas">
+            <p:growl id="messages" autoUpdate="true" showDetail="true"/>
+            <hr></hr>
+            <p:commandButton type="onsubmit" styleClass="btn btn-success small fc-left left text-left" value="Buscar Resultado"
+                             update="formResultadoApostas, menuPrincipal, messages" actionListener="#{apostaCtrl.buscarResultadoApostas()}"/>
+            <hr></hr>
+
+            <p:outputLabel  value="1° Prêmio :"/>
+            <p:inputText maxlength="4" size="5" value="#{apostaCtrl.resultadoTO.primeiroPremio}" required="true" requiredMessage="Favor preencher o 1° Prêmio"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="2° Prêmio :"/>
+            <p:inputText maxlength="4" size="5" value="#{apostaCtrl.resultadoTO.segundoPremio}" required="true" requiredMessage="Favor preencher o 2° Prêmio"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="3° Prêmio :"/>
+            <p:inputText maxlength="4" size="5" value="#{apostaCtrl.resultadoTO.terceiroPremio}" required="true" requiredMessage="Favor preencher o 3° Prêmio"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="4° Prêmio :"/>
+            <p:inputText maxlength="4" size="5" value="#{apostaCtrl.resultadoTO.quartoPremio}" required="true" requiredMessage="Favor preencher o 4° Prêmio"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="5° Prêmio :"/>
+            <p:inputText maxlength="4" size="5" value="#{apostaCtrl.resultadoTO.quintoPremio}" required="true" requiredMessage="Favor preencher o 5° Prêmio"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="6° Prêmio :"/>
+            <p:inputText maxlength="4" size="5" value="#{apostaCtrl.resultadoTO.sextoPremio}" required="true" requiredMessage="Favor preencher o 6° Prêmio"/>
+            <p:outputLabel styleClass="espaco-esquerda" value="7° Prêmio :"/>
+            <p:inputText maxlength="4" size="5" value="#{apostaCtrl.resultadoTO.setimoPremio}" required="true" requiredMessage="Favor preencher o 7° Prêmio"/>
+
+            <hr></hr>
+            <ui:include src="gridResultadoApostas.xhtml"></ui:include>
+        </h:form>
+    </ui:define>
+</ui:decorate>
+</html>

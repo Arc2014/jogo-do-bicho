@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:dataTable var="primeiro" reflow="true" value="#{apostaCtrl.resultadoTO.apostasPrimeiroPremio}" rendered="#{apostaCtrl.resultadoTO.apostasPrimeiroPremio.size() > 0}"
+                 emptyMessage="Apostas não encontradas !">
+        <f:facet name="header">
+            <h:outputText value="Primeiro Prêmio" />
+        </f:facet>
+        <p:column headerText="Número">
+            <h:outputText value="#{primeiro.numero}" />
+        </p:column>
+        <p:column headerText="Valor Apostado">
+            <h:outputText value="#{primeiro.valorApostaPrimeiroPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
+
+    <p:dataTable var="segundo" reflow="true" value="#{apostaCtrl.resultadoTO.apostasSegundoPremio}" rendered="#{apostaCtrl.resultadoTO.apostasSegundoPremio.size() > 0}"
+                 emptyMessage="Apostas não encontradas !">
+        <f:facet name="header">
+            <h:outputText value="Segundo Prêmio" />
+        </f:facet>
+        <p:column headerText="Número">
+            <h:outputText value="#{segundo.numero}" />
+        </p:column>
+        <p:column headerText="Valor Apostado">
+            <h:outputText value="#{segundo.valorApostaSegundoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
+
+    <p:dataTable var="terceiro" reflow="true" value="#{apostaCtrl.resultadoTO.apostasTerceiroPremio}" rendered="#{apostaCtrl.resultadoTO.apostasTerceiroPremio.size() > 0}"
+                 emptyMessage="Apostas não encontradas !">
+        <f:facet name="header">
+            <h:outputText value="Terceiro Prêmio" />
+        </f:facet>
+        <p:column headerText="Número">
+            <h:outputText value="#{terceiro.numero}" />
+        </p:column>
+        <p:column headerText="Valor Apostado">
+            <h:outputText value="#{terceiro.valorApostaTerceiroPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
+
+    <p:dataTable var="quarto" reflow="true" value="#{apostaCtrl.resultadoTO.apostasQuartoPremio}" rendered="#{apostaCtrl.resultadoTO.apostasQuartoPremio.size() > 0}"
+                 emptyMessage="Apostas não encontradas !">
+        <f:facet name="header">
+            <h:outputText value="Quarto Prêmio" />
+        </f:facet>
+        <p:column headerText="Número">
+            <h:outputText value="#{quarto.numero}" />
+        </p:column>
+        <p:column headerText="Valor Apostado">
+            <h:outputText value="#{quarto.valorApostaQuartoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
+
+    <p:dataTable var="quinto" reflow="true" value="#{apostaCtrl.resultadoTO.apostasQuintoPremio}" rendered="#{apostaCtrl.resultadoTO.apostasQuintoPremio.size() > 0}"
+                 emptyMessage="Apostas não encontradas !">
+        <f:facet name="header">
+            <h:outputText value="Quinto Prêmio" />
+        </f:facet>
+        <p:column headerText="Número">
+            <h:outputText value="#{quinto.numero}" />
+        </p:column>
+        <p:column headerText="Valor Apostado">
+            <h:outputText value="#{quinto.valorApostaQuintoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
+
+    <p:dataTable var="sexto" reflow="true" value="#{apostaCtrl.resultadoTO.apostasSextoPremio}" rendered="#{apostaCtrl.resultadoTO.apostasSextoPremio.size() > 0}"
+                 emptyMessage="Apostas não encontradas !">
+        <f:facet name="header">
+            <h:outputText value="Sexto Prêmio" />
+        </f:facet>
+        <p:column headerText="Número">
+            <h:outputText value="#{sexto.numero}" />
+        </p:column>
+        <p:column headerText="Valor Apostado">
+            <h:outputText value="#{sexto.valorApostaSextoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
+
+    <p:dataTable var="setimo" reflow="true" value="#{apostaCtrl.resultadoTO.apostasSetimoPremio}" rendered="#{apostaCtrl.resultadoTO.apostasSetimoPremio.size() > 0}"
+                 emptyMessage="Apostas não encontradas !">
+        <f:facet name="header">
+            <h:outputText value="Sétimo Prêmio" />
+        </f:facet>
+        <p:column headerText="Número">
+            <h:outputText value="#{setimo.numero}" />
+        </p:column>
+        <p:column headerText="Valor Apostado">
+            <h:outputText value="#{setimo.valorApostaSetimoPremio}" >
+                <f:convertNumber type="currency" currencySymbol="" />
+            </h:outputText>
+        </p:column>
+    </p:dataTable>
+</html>
+

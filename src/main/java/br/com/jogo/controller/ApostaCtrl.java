@@ -6,6 +6,7 @@ import br.com.jogo.service.ApostaService;
 import br.com.jogo.service.MediaService;
 import br.com.jogo.service.RelatorioApostasService;
 import br.com.jogo.to.RelatorioMilharCentenaTO;
+import br.com.jogo.to.ResultadoTO;
 import br.com.jogo.util.FacesUtil;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +20,7 @@ import java.applet.Applet;
 import java.applet.AudioClip;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,9 +37,14 @@ public class ApostaCtrl implements Serializable{
     @Inject
     private Aposta aposta;
 
+    @Inject
+    private ResultadoTO resultadoTO;
+
     private List<RelatorioMilharCentenaTO> relatorioMilharCentenaTOs;
 
     private List<Aposta> apostas;
+
+    private List<Aposta> apostasPremiadas;
 
     @PostConstruct
     public void carregarRelatorio () {
@@ -66,7 +73,7 @@ public class ApostaCtrl implements Serializable{
 
     private void tocarAlarme (){
         for (RelatorioMilharCentenaTO relatorioMilharCentenaTO : relatorioMilharCentenaTOs) {
-            if (relatorioMilharCentenaTO.getNumero().equals(aposta.getNumero()) && aposta.getValorApostaPrimeiroPremio() > 0) {
+            if (relatorioMilharCentenaTO.getNumero().equals(aposta.getNumero()) && aposta.getValorApostaPrimeiroPremio() != null && aposta.getValorApostaPrimeiroPremio() > 0) {
                 MediaService.play();
             }
             if (aposta.isApostaValorSperior10()) {
@@ -102,6 +109,15 @@ public class ApostaCtrl implements Serializable{
         }
     }
 
+    public void buscarResultadoApostas(){
+
+        try {
+            resultadoTO = apostaService.buscarApostasPremiadas(resultadoTO);
+        } catch (Exception e) {
+            FacesUtil.mostrarMensagemErro("mensagem.erro.carregar.premios");
+        }
+    }
+
     public Aposta getAposta() {
         return aposta;
     }
@@ -125,4 +141,13 @@ public class ApostaCtrl implements Serializable{
     public void setApostas(List<Aposta> apostas) {
         this.apostas = apostas;
     }
+
+    public ResultadoTO getResultadoTO() {
+        return resultadoTO;
+    }
+
+    public void setResultadoTO(ResultadoTO resultadoTO) {
+        this.resultadoTO = resultadoTO;
+    }
+
 }
