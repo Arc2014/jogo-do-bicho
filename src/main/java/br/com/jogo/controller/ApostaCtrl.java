@@ -7,7 +7,14 @@ import br.com.jogo.service.MediaService;
 import br.com.jogo.service.RelatorioApostasService;
 import br.com.jogo.to.RelatorioMilharCentenaTO;
 import br.com.jogo.to.ResultadoTO;
+import br.com.jogo.util.DataUtil;
 import br.com.jogo.util.FacesUtil;
+import br.com.jogo.util.ObjectUtil;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -22,6 +29,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Named
@@ -73,12 +81,10 @@ public class ApostaCtrl implements Serializable{
 
     private void tocarAlarme (){
         for (RelatorioMilharCentenaTO relatorioMilharCentenaTO : relatorioMilharCentenaTOs) {
-            if (relatorioMilharCentenaTO.getNumero().equals(aposta.getNumero()) && aposta.getValorApostaPrimeiroPremio() != null && aposta.getValorApostaPrimeiroPremio() > 0) {
+            if (MediaService.podeTocarAlarme(relatorioMilharCentenaTO, aposta)) {
                 MediaService.play();
             }
-            if (aposta.isApostaValorSperior10()) {
-                MediaService.play();
-            }
+
         }
     }
 
@@ -116,6 +122,27 @@ public class ApostaCtrl implements Serializable{
         } catch (Exception e) {
             FacesUtil.mostrarMensagemErro("mensagem.erro.carregar.premios");
         }
+    }
+
+    public void formatarPlanilha(Object o) {
+        Date agora = new Date();
+        HSSFWorkbook wb = (HSSFWorkbook) o;
+        HSSFSheet sheet = wb.getSheetAt(0);
+        HSSFRow header = sheet.getRow(0);
+        header.createCell(header.getLastCellNum() + 1).setCellValue("Data/Hora:");
+        header.createCell(header.getLastCellNum()).setCellValue(DataUtil.formataDataPtBr(agora) + "--" + DataUtil.formataHoraPtBr(agora));
+        HSSFCellStyle cellStyle = wb.createCellStyle();
+        cellStyle.setFillForegroundColor(HSSFColor.GREEN.index);
+        cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+
+        for (int i = 0; i < (header.getPhysicalNumberOfCells() - 2) ; i++) {
+            header.getCell(i).setCellStyle(cellStyle);
+        }
+
+    }
+
+    public int getProximaAposta () {
+        return getApostas() == null ? 0 : (getApostas().size() + 1);
     }
 
     public Aposta getAposta() {

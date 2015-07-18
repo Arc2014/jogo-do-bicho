@@ -3,7 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 
-<p:dataTable var="r" reflow="true" value="#{apostaCtrl.relatorioMilharCentenaTOs}"  rows="10" paginator="true" emptyMessage="Apostas não encontradas !">
+<p:dataTable id="relatorio" widgetVar="relatorio" var="r" reflow="true" value="#{apostaCtrl.relatorioMilharCentenaTOs}"  rows="10" paginator="true" emptyMessage="Apostas não encontradas !">
     <p:column headerText="N°">
         <h:outputText value="#{r.numero}" />
     </p:column>
@@ -70,5 +70,9 @@
         </h:outputText>
     </p:column>
 </p:dataTable>
+
+<h:commandLink value="Exportar Relatório" styleClass="btn btn-info">
+    <p:dataExporter type="xls" target="relatorio" fileName="Relatório de Apostas" pageOnly="false" postProcessor="#{apostaCtrl.formatarPlanilha}"/>
+</h:commandLink>
 </html>
 

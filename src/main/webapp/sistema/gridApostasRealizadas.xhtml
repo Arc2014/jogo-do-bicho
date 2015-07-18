@@ -3,7 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 
-    <p:dataTable widgetVar="tableApostas" var="a" reflow="true" value="#{apostaCtrl.apostas}"  rows="10" paginator="true" emptyMessage="Apostas não encontradas !">
+    <p:dataTable widgetVar="tableApostas" id="tableApostas" var="a" reflow="true" value="#{apostaCtrl.apostas}"  rows="10" paginator="true" emptyMessage="Apostas não encontradas !">
         <p:column headerText="Número">
             <h:outputText value="#{a.numero}" />
         </p:column>
@@ -50,10 +50,15 @@
             </h:outputText>
         </p:column>
 
-        <p:column styleClass="text-center" headerText="Apagar Aposta">
+        <p:column exportable="false" styleClass="text-center" headerText="Apagar Aposta">
             <p:commandLink update="formApostasMilhar, menuPrincipal, messages" actionListener="#{apostaCtrl.apagarAposta(a)}">
                 <span class="glyphicon glyphicon-trash"></span>
             </p:commandLink>
         </p:column>
     </p:dataTable>
+
+    <h:commandLink value="Exportar Relatório" styleClass="btn btn-info">
+        <p:dataExporter type="xls" target="tableApostas" fileName="Apostas" pageOnly="false" postProcessor="#{apostaCtrl.formatarPlanilha}" />
+    </h:commandLink>
+
 </html>

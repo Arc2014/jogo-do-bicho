@@ -1,6 +1,9 @@
 package br.com.jogo.service;
 
+import br.com.jogo.model.Aposta;
+import br.com.jogo.to.RelatorioMilharCentenaTO;
 import br.com.jogo.util.FacesUtil;
+import br.com.jogo.util.ObjectUtil;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -26,6 +29,16 @@ public class MediaService implements Serializable{
         } catch (Exception e) {
             FacesUtil.mostrarMensagemErro("mensagem.erro.alerta.inisistente");
             e.printStackTrace();
+        }
+    }
+
+    public static boolean podeTocarAlarme(RelatorioMilharCentenaTO relatorioTO, Aposta aposta){
+        if (aposta.isApostaValorSperior10()) {
+            return true;
+        } else if (aposta.getNumero().equals(relatorioTO.getNumero()) && ObjectUtil.isValidNumber(aposta.getValorApostaPrimeiroPremio()) && ObjectUtil.isValidNumber(relatorioTO.getValorTotalPrimeiroPremio())){
+            return true;
+        } else {
+            return false;
         }
     }
 }

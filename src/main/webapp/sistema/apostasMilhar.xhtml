@@ -8,7 +8,8 @@
         <h:form prependId="false" id="formApostasMilhar">
             <p:growl id="messages" autoUpdate="true" showDetail="true"/>
             <hr></hr>
-            <p:commandButton style="margin-right: 247px; margin-left: -406px;" type="onsubmit" styleClass="btn btn-success small fc-left left text-left" value="Jogar"  update="formApostasMilhar, menuPrincipal, messages" actionListener="#{apostaCtrl.save()}"/>
+            <p:commandButton style="margin-right: 247px; margin-left: -406px;" type="onsubmit" styleClass="btn btn-success small fc-left left text-left"
+                             value="Aposta :#{apostaCtrl.getProximaAposta()}"  update="formApostasMilhar, menuPrincipal, messages" actionListener="#{apostaCtrl.save()}"/>
             <p:outputLabel value="N° :"/>
             <p:inputText size="10" value="#{apostaCtrl.aposta.numero}" maxlength="4"/>
             <p:outputLabel styleClass="espaco-esquerda" value="R$ :"/>
