@@ -4,14 +4,18 @@
       xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 
 
-<p:layout  style="min-width:400px;min-height:700px;">
-    <p:layoutUnit position="west" resizable="true" size="100" minSize="40" maxSize="200">
+<p:layout  style="min-width:400px;min-height:400px;">
+    <p:layoutUnit position="west" resizable="true" size="150" minSize="60" maxSize="200">
        <h4>Últimas duplicadas</h4>
         <ul>
-        <ui:repeat value="#{apostaCtrl.ultimasApostasDuplicadas}" var="top">
-           <li>#{top.numero}</li>
-       </ui:repeat>
+            <ui:repeat value="#{apostaCtrl.ultimasApostasDuplicadas}" var="top">
+               <li>#{top.numero}</li>
+           </ui:repeat>
        </ul>
+
+        <h:commandLink value="Exportar Relatório" styleClass="btn btn-info">
+            <p:dataExporter type="xls" target="relatorio" fileName="Relatório de Apostas" pageOnly="false" postProcessor="#{apostaCtrl.formatarPlanilha}"/>
+        </h:commandLink>
     </p:layoutUnit>
 
     <p:layoutUnit position="center">
@@ -38,10 +42,6 @@
                 </h:outputText>
             </p:column>
         </p:dataTable>
-
-        <h:commandLink value="Exportar Relatório" styleClass="btn btn-info">
-            <p:dataExporter type="xls" target="relatorio" fileName="Relatório de Apostas" pageOnly="false" postProcessor="#{apostaCtrl.formatarPlanilha}"/>
-        </h:commandLink>
     </p:layoutUnit>
 </p:layout>
 </html>

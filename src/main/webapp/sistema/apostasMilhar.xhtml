@@ -5,7 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <ui:decorate template="../template/template.xhtml">
     <ui:define name="centro">
-        <h:form prependId="false" id="formApostasMilhar" style="margin-top: -20px;">
+        <h:form prependId="false" id="formApostasMilhar" style="margin-top: -30px;">
             <p:growl id="messages" autoUpdate="true" showDetail="true"/>
             <p:focus context="numero"/>
             <hr></hr>
@@ -32,7 +32,7 @@
             <p:inputText styleClass="moeda" size="10" onfocus="configurarMoeda();" value="#{apostaCtrl.aposta.valorApostaSetimoPremio}"/>
 
             <hr></hr>
-            <p:tabView prependId="false" style="margin-top: -20px;">
+            <p:tabView prependId="false" style="margin-top: -30px;">
                 <p:tab title="Relatorio de Apostas">
                     <ui:include src="relatorioApostas.xhtml"></ui:include>
                 </p:tab>
