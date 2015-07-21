@@ -11,6 +11,7 @@ CREATE TABLE usuario (
 create table aposta (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   numero VARCHAR(4),
+  data_hora TIMESTAMP;
   valor_aposta_primeiro_premio DOUBLE,
   valor_aposta_segundo_premio DOUBLE,
   valor_aposta_terceiro_premio DOUBLE,

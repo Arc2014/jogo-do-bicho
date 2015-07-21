@@ -16,6 +16,11 @@
     <h:outputScript name="jquery/jquery.js" library="primefaces" />
     <h:outputScript library="js" name="jqueryMaskMoney.js"/>
     <script>
+
+        function setFocoNumero() {
+            $( "#numero" ).focus();
+        }
+
         function configurarMoeda() {
             $(".moeda").maskMoney(
                 {
@@ -28,6 +33,7 @@
 
         $(document).ready(function() {
             configurarMoeda();
+            setFocoNumero();
         });
     </script>
 </h:head>

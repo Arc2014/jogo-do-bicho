@@ -25,7 +25,7 @@ public class ApostaDAO extends DAOGenerico<Long, Aposta>{
 
     }
 
-    public List<Aposta> buscarApostasPremiadasPrimeiroPremio(String resultado, Premio PREMIO) {
+    public List<Aposta> buscarApostasPremiadasPrimeiroPremio(String resultado, Premio PREMIO) throws Exception{
         List<Aposta> apostas = new ArrayList<Aposta>();
         StringBuilder jpql = new StringBuilder();
         jpql.append("SELECT a FROM Aposta a WHERE a.numero =:resultado AND a.valorAposta")
@@ -35,6 +35,25 @@ public class ApostaDAO extends DAOGenerico<Long, Aposta>{
         query.setParameter("resultado", resultado);
         apostas = query.getResultList();
         return apostas;
+    }
+
+    public List<Aposta> buscarUltimasApostas() throws  Exception{
+        List<Aposta> apostas = new ArrayList<Aposta>();
+        String jpql = "SELECT a FROM Aposta a GROUP BY a.numero HAVING COUNT(a.id) > 1 ORDER BY a.dataHora DESC";
+        Query query = getEntityManagerInstance().createQuery(jpql);
+        query.setMaxResults(5);
+        apostas = query.getResultList();
+        return apostas;
+    }
+
+    public void  atualizarDataApostasSemelhantes(Aposta a) throws Exception{
+        String jpql = "UPDATE Aposta a SET a.dataHora =:dataHora WHERE a.numero =:numero";
+        Query query = getEntityManagerInstance().createQuery(jpql);
+        query.setParameter("dataHora", a.getDataHora());
+        query.setParameter("numero", a.getNumero());
+        beginTransaction();
+        query.executeUpdate();
+        commit();
     }
 
 }

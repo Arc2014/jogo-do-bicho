@@ -2,6 +2,7 @@ package br.com.jogo.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "aposta")
@@ -35,6 +36,10 @@ public class Aposta implements Serializable, Comparable<Aposta>{
 
     @Column(name = "valor_aposta_setimo_premio")
     private Double valorApostaSetimoPremio;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "data_hora")
+    private Date dataHora;
 
     public Long getId() {
         return id;
@@ -106,6 +111,14 @@ public class Aposta implements Serializable, Comparable<Aposta>{
 
     public void setValorApostaSetimoPremio(Double valorApostaSetimoPremio) {
         this.valorApostaSetimoPremio = valorApostaSetimoPremio;
+    }
+
+    public Date getDataHora() {
+        return dataHora;
+    }
+
+    public void setDataHora(Date dataHora) {
+        this.dataHora = dataHora;
     }
 
     public boolean isApostaInvalida() {

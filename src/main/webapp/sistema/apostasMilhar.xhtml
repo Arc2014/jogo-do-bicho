@@ -5,13 +5,14 @@
       xmlns:f="http://java.sun.com/jsf/core">
 <ui:decorate template="../template/template.xhtml">
     <ui:define name="centro">
-        <h:form prependId="false" id="formApostasMilhar">
+        <h:form prependId="false" id="formApostasMilhar" style="margin-top: -20px;">
             <p:growl id="messages" autoUpdate="true" showDetail="true"/>
+            <p:focus context="numero"/>
             <hr></hr>
-            <p:commandButton style="margin-right: 247px; margin-left: -406px;" type="onsubmit" styleClass="btn btn-success small fc-left left text-left"
+            <p:commandButton oncomplete="setFocoNumero()" style="margin-right: 247px; margin-left: -406px;" type="onsubmit" styleClass="btn btn-success small fc-left left text-left"
                              value="Aposta :#{apostaCtrl.getProximaAposta()}"  update="formApostasMilhar, menuPrincipal, messages" actionListener="#{apostaCtrl.save()}"/>
             <p:outputLabel value="N° :"/>
-            <p:inputText size="10" value="#{apostaCtrl.aposta.numero}" maxlength="4"/>
+            <p:inputText id="numero" size="10" value="#{apostaCtrl.aposta.numero}" maxlength="4"/>
             <p:outputLabel styleClass="espaco-esquerda" value="R$ :"/>
             <p:inputText styleClass="moeda" onfocus="configurarMoeda();" id="primeiroPremio" size="10" value="#{apostaCtrl.aposta.valorApostaPrimeiroPremio}"/>
 
@@ -31,7 +32,7 @@
             <p:inputText styleClass="moeda" size="10" onfocus="configurarMoeda();" value="#{apostaCtrl.aposta.valorApostaSetimoPremio}"/>
 
             <hr></hr>
-            <p:tabView prependId="false">
+            <p:tabView prependId="false" style="margin-top: -20px;">
                 <p:tab title="Relatorio de Apostas">
                     <ui:include src="relatorioApostas.xhtml"></ui:include>
                 </p:tab>

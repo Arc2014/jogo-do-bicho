@@ -54,10 +54,13 @@ public class ApostaCtrl implements Serializable{
 
     private List<Aposta> apostasPremiadas;
 
+    private List<Aposta> ultimasApostasDuplicadas;
+
     @PostConstruct
-    public void carregarRelatorio () {
+    public void carregarRelatorio (){
         setRelatorioMilharCentenaTOs(relatorioApostasService.montarRelatorioApostasMilharCentena());
         setApostas(carregarApostas());
+        setUltimasApostasDuplicadas(carregarUltimasApostas());
     }
 
     public List<Aposta> carregarApostas() {
@@ -141,6 +144,14 @@ public class ApostaCtrl implements Serializable{
 
     }
 
+    private List<Aposta> carregarUltimasApostas() {
+        try {
+            return apostaService.buscarUltimasApostas();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public int getProximaAposta () {
         return getApostas() == null ? 0 : (getApostas().size() + 1);
     }
@@ -177,4 +188,11 @@ public class ApostaCtrl implements Serializable{
         this.resultadoTO = resultadoTO;
     }
 
+    public List<Aposta> getUltimasApostasDuplicadas() {
+        return ultimasApostasDuplicadas;
+    }
+
+    public void setUltimasApostasDuplicadas(List<Aposta> ultimasApostasDuplicadas) {
+        this.ultimasApostasDuplicadas = ultimasApostasDuplicadas;
+    }
 }

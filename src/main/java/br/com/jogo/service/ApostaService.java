@@ -18,6 +18,7 @@ public class ApostaService implements Serializable{
 
     public void save(Aposta aposta) throws Exception{
         dao.update(aposta);
+        dao.atualizarDataApostasSemelhantes(aposta);
     }
 
     @Transactional
@@ -46,5 +47,9 @@ public class ApostaService implements Serializable{
         resultadoTO.setApostasSetimoPremio(dao.buscarApostasPremiadasPrimeiroPremio(resultadoTO.getSetimoPremio(), Premio.SETIMO));
 
         return resultadoTO;
+    }
+
+    public List<Aposta> buscarUltimasApostas() throws  Exception {
+        return dao.buscarUltimasApostas();
     }
 }
