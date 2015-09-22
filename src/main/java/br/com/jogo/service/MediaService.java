@@ -18,7 +18,7 @@ public class MediaService implements Serializable{
     ;
 
     private static AudioStream getMedia() throws Exception {
-        FileInputStream in = new FileInputStream(new File("/home/arcosta/Desenvolvimento/Projetos/freelas/jogo-do-bicho/src/main/java/br/com/jogo/service/beep-aposta.wav"));
+        FileInputStream in = new FileInputStream(new File("C:/jogo-do-bicho/beep-aposta.wav"));
         AudioStream as = new AudioStream(in);
         return as;
     }

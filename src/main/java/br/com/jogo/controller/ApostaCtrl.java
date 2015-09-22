@@ -112,6 +112,7 @@ public class ApostaCtrl implements Serializable{
             apostaService.apagarApostas();
             relatorioMilharCentenaTOs = Collections.emptyList();
             apostas = Collections.emptyList();
+            ultimasApostasDuplicadas = Collections.emptyList();
             FacesUtil.mostrarMensagemSucesso("mensagem.sucesso.apagar.apostas");
         }catch (Exception e) {
             FacesUtil.mostrarMensagemErro("mensagem.erro.apagar.apostas");
