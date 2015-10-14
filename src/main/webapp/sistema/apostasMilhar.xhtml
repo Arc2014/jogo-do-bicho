@@ -19,17 +19,17 @@
             <hr></hr>
 
             <p:outputLabel value="2° R$ :"/>
-            <p:inputText styleClass="moeda" onfocus="configurarMoeda();" size="10" value="#{apostaCtrl.aposta.valorApostaSegundoPremio}"/>
+            <p:inputText id="segundoPremio" styleClass="moeda" onfocus="configurarMoeda();copiarValorPrimeiraAposta('#segundoPremio');" size="10" value="#{apostaCtrl.aposta.valorApostaSegundoPremio}"/>
             <p:outputLabel styleClass="espaco-esquerda" value="3° R$ :"/>
-            <p:inputText styleClass="moeda" size="10" onfocus="configurarMoeda();" value="#{apostaCtrl.aposta.valorApostaTerceiroPremio}"/>
+            <p:inputText id="terceiroPremio" styleClass="moeda" size="10" onfocus="configurarMoeda();copiarValorPrimeiraAposta('#terceiroPremio');" value="#{apostaCtrl.aposta.valorApostaTerceiroPremio}"/>
             <p:outputLabel styleClass="espaco-esquerda" value="4° R$ :"/>
-            <p:inputText styleClass="moeda" size="10" onfocus="configurarMoeda(); " value="#{apostaCtrl.aposta.valorApostaQuartoPremio}"/>
+            <p:inputText id="quartoPremio" styleClass="moeda" size="10" onfocus="configurarMoeda();copiarValorPrimeiraAposta('#quartoPremio');" value="#{apostaCtrl.aposta.valorApostaQuartoPremio}"/>
             <p:outputLabel styleClass="espaco-esquerda" value="5° R$ :"/>
-            <p:inputText styleClass="moeda" size="10" onfocus="configurarMoeda(); " value="#{apostaCtrl.aposta.valorApostaQuintoPremio}"/>
+            <p:inputText id="quintoPremio" styleClass="moeda" size="10" onfocus="configurarMoeda();copiarValorPrimeiraAposta('#quintoPremio');" value="#{apostaCtrl.aposta.valorApostaQuintoPremio}"/>
             <p:outputLabel styleClass="espaco-esquerda" value="6° R$ :"/>
-            <p:inputText styleClass="moeda" size="10" onfocus="configurarMoeda();" value="#{apostaCtrl.aposta.valorApostaSextoPremio}"/>
+            <p:inputText id="sextoPremio" styleClass="moeda" size="10" onfocus="configurarMoeda();copiarValorPrimeiraAposta('#sextoPremio');" value="#{apostaCtrl.aposta.valorApostaSextoPremio}"/>
             <p:outputLabel styleClass="espaco-esquerda" value="7° R$ :"/>
-            <p:inputText styleClass="moeda" size="10" onfocus="configurarMoeda();" value="#{apostaCtrl.aposta.valorApostaSetimoPremio}"/>
+            <p:inputText id="setimoPremio" styleClass="moeda" size="10" onfocus="configurarMoeda();copiarValorPrimeiraAposta('#setimoPremio');" value="#{apostaCtrl.aposta.valorApostaSetimoPremio}"/>
 
             <hr></hr>
             <p:tabView prependId="false" style="margin-top: -30px;">

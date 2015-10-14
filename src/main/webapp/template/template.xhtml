@@ -17,6 +17,10 @@
     <h:outputScript library="js" name="jqueryMaskMoney.js"/>
     <script>
 
+        function copiarValorPrimeiraAposta(id) {
+            $(id).val($("#primeiroPremio").val());
+        }
+
         function setFocoNumero() {
             $( "#numero" ).focus();
         }

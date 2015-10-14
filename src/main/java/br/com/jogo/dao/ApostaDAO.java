@@ -28,11 +28,11 @@ public class ApostaDAO extends DAOGenerico<Long, Aposta>{
     public List<Aposta> buscarApostasPremiadasPrimeiroPremio(String resultado, Premio PREMIO) throws Exception{
         List<Aposta> apostas = new ArrayList<Aposta>();
         StringBuilder jpql = new StringBuilder();
-        jpql.append("SELECT a FROM Aposta a WHERE a.numero =:resultado AND a.valorAposta")
+        jpql.append("SELECT a FROM Aposta a WHERE a.numero LIKE :resultado AND a.valorAposta")
                 .append(PREMIO.getTipo())
                 .append("Premio > 0.0 ");
         Query query = getEntityManagerInstance().createQuery(jpql.toString());
-        query.setParameter("resultado", resultado);
+        query.setParameter("resultado", "%" + resultado.substring(resultado.length() - 3, resultado.length()));
         apostas = query.getResultList();
         return apostas;
     }
