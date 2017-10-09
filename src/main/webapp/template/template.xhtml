@@ -13,33 +13,11 @@
     <link rel="stylesheet" type="text/css" href="/jogo/resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/jogo/resources/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="/jogo/resources/css/style.css"/>
+
     <h:outputScript name="jquery/jquery.js" library="primefaces" />
     <h:outputScript library="js" name="jqueryMaskMoney.js"/>
-    <script>
+    <h:outputScript library="js" name="script.js"/>
 
-        function copiarValorPrimeiraAposta(id) {
-            $(id).val($("#primeiroPremio").val());
-        }
-
-        function setFocoNumero() {
-            $( "#numero" ).focus();
-        }
-
-        function configurarMoeda() {
-            $(".moeda").maskMoney(
-                {
-                    thousands: '',
-                    decimal:'.',
-                    affixesStay: false
-                }
-            );
-        }
-
-        $(document).ready(function() {
-            configurarMoeda();
-            setFocoNumero();
-        });
-    </script>
 </h:head>
 <h:body>
     <div align="center">
