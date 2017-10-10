@@ -7,7 +7,7 @@ function copiarValorPrimeiraAposta(id) {
 
 function limparCampo(id) {
     $(id).keydown(function (e) {
-        if(e.keyCode !== 9 && podeLimparCampo) {// Limpa se diferente de tecla Tab
+        if(e.keyCode !== 9 && e.keyCode !== 13 && podeLimparCampo) {// Limpa se diferente de tecla Tab
             podeLimparCampo = false;
             $(this).val("");
         }
