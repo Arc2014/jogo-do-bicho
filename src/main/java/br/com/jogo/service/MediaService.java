@@ -33,12 +33,6 @@ public class MediaService implements Serializable{
     }
 
     public static boolean podeTocarAlarme(RelatorioMilharCentenaTO relatorioTO, Aposta aposta){
-        if (aposta.isApostaValorSperior10()) {
-            return true;
-        } else if (aposta.getNumero().equals(relatorioTO.getNumero()) && ObjectUtil.isValidNumber(aposta.getValorApostaPrimeiroPremio()) && ObjectUtil.isValidNumber(relatorioTO.getValorTotalPrimeiroPremio())){
-            return true;
-        } else {
-            return false;
-        }
+        return aposta.isApostaValorSperior10() || (aposta.getNumero().equals(relatorioTO.getNumero()) && ObjectUtil.isValidNumber(aposta.getValorApostaPrimeiroPremio()) && ObjectUtil.isValidNumber(relatorioTO.getValorTotalPrimeiroPremio()));
     }
 }

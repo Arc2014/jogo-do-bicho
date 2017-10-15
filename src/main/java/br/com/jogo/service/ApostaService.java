@@ -52,4 +52,8 @@ public class ApostaService implements Serializable{
     public List<Aposta> buscarUltimasApostas() throws  Exception {
         return dao.buscarUltimasApostas();
     }
+
+    public List<Aposta> buscarApostasRepetidas(Aposta aposta) throws  Exception {
+        return dao.buscarApostasRepetidas(aposta);
+    }
 }

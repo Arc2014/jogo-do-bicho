@@ -46,6 +46,15 @@ public class ApostaDAO extends DAOGenerico<Long, Aposta>{
         return apostas;
     }
 
+    public List<Aposta> buscarApostasRepetidas(Aposta a) throws  Exception{
+        List<Aposta> apostas = new ArrayList<Aposta>();
+        String jpql = "SELECT a FROM Aposta a WHERE a.numero =:numero ORDER BY a.dataHora DESC";
+        Query query = getEntityManagerInstance().createQuery(jpql);
+        query.setParameter("numero", a.getNumero());
+        apostas = query.getResultList();
+        return apostas;
+    }
+
     public void  atualizarDataApostasSemelhantes(Aposta a) throws Exception{
         String jpql = "UPDATE Aposta a SET a.dataHora =:dataHora WHERE a.numero =:numero";
         Query query = getEntityManagerInstance().createQuery(jpql);

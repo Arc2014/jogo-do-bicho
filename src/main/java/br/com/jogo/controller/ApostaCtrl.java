@@ -1,7 +1,6 @@
 package br.com.jogo.controller;
 
 import br.com.jogo.model.Aposta;
-import br.com.jogo.model.Usuario;
 import br.com.jogo.service.ApostaService;
 import br.com.jogo.service.MediaService;
 import br.com.jogo.service.RelatorioApostasService;
@@ -15,17 +14,12 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.primefaces.context.RequestContext;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
-import java.applet.Applet;
-import java.applet.AudioClip;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,7 +46,7 @@ public class ApostaCtrl implements Serializable{
 
     private List<Aposta> apostas;
 
-    private List<Aposta> apostasPremiadas;
+    private List<Aposta> apostasRepetidas;
 
     private List<Aposta> ultimasApostasDuplicadas;
 
@@ -87,7 +81,25 @@ public class ApostaCtrl implements Serializable{
             if (MediaService.podeTocarAlarme(relatorioMilharCentenaTO, aposta)) {
                 MediaService.play();
             }
+            if (podeAbrirModalApostasRepetidas(relatorioMilharCentenaTO)) {
+                abrirModalDeApostasRepetidas(aposta);
+                break;
+            }
 
+        }
+    }
+
+    private boolean podeAbrirModalApostasRepetidas(RelatorioMilharCentenaTO relatorioMilharCentenaTO) {
+        return aposta.getNumero().equals(relatorioMilharCentenaTO.getNumero()) && ObjectUtil.isValidNumber(aposta.getValorApostaPrimeiroPremio()) && ObjectUtil.isValidNumber(relatorioMilharCentenaTO.getValorTotalPrimeiroPremio());
+    }
+
+    private void abrirModalDeApostasRepetidas(Aposta aposta) {
+        try {
+            apostasRepetidas = new ArrayList<Aposta>();
+            apostasRepetidas = apostaService.buscarApostasRepetidas(aposta);
+            RequestContext.getCurrentInstance().execute("PF('modalApostasRepetidas').show();");
+        } catch (Exception e) {
+            FacesUtil.mostrarMensagemErro("mensagem.erro.carregar.aposta.repetidas");
         }
     }
 
@@ -195,5 +207,13 @@ public class ApostaCtrl implements Serializable{
 
     public void setUltimasApostasDuplicadas(List<Aposta> ultimasApostasDuplicadas) {
         this.ultimasApostasDuplicadas = ultimasApostasDuplicadas;
+    }
+
+    public List<Aposta> getApostasRepetidas() {
+        return apostasRepetidas;
+    }
+
+    public void setApostasRepetidas(List<Aposta> apostasRepetidas) {
+        this.apostasRepetidas = apostasRepetidas;
     }
 }

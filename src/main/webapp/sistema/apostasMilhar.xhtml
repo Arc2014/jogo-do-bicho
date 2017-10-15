@@ -40,6 +40,21 @@
                     <ui:include src="gridApostasRealizadas.xhtml"></ui:include>
                 </p:tab>
             </p:tabView>
+
+            <p:dialog header="Apostas Repetidas" widgetVar="modalApostasRepetidas" appendTo="@(body)" modal="true"  width="300" closeOnEscape="true">
+                <p:dataTable var="ar" value="#{apostaCtrl.apostasRepetidas}">
+                    <p:column headerText="Aposta">
+                        <h:outputText value="#{ar.numero}" />
+                    </p:column>
+
+                    <p:column headerText="Valor">
+                        <h:outputText value="#{ar.valorApostaPrimeiroPremio}" >
+                            <f:convertNumber type="currency" currencySymbol="" />
+                        </h:outputText>
+                    </p:column>
+                </p:dataTable>
+            </p:dialog>
+
         </h:form>
     </ui:define>
 </ui:decorate>
